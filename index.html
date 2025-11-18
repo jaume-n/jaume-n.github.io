@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sign-In</title>
+
+    <!-- Script de Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- Client ID (CORREGIT) -->
+    <meta name="google-signin-client_id" content="871075854956-93tmibcisad28t63bt839mohipo52li0.apps.googleusercontent.com">
+</head>
+
+<body>
+
+    <!-- Missatge de benvinguda -->
+    <h2 id="missatge-benvinguda" style="display:none;">Hola, aquesta web ha estat creada pel Jaume!</h2>
+
+    <!-- Div d’inicialització CORRECTE -->
+    <div 
+        id="g_id_onload"
+        data-client_id="871075854956-93tmibcisad28t63bt839mohipo52li0.apps.googleusercontent.com"
+        data-callback="onSignIn">
+    </div>
+
+    <!-- Botó de Google Sign-In CORRECTE -->
+    <div 
+        class="g_id_signin"
+        data-type="standard">
+    </div>
+
+    <!-- Botó de desconnexió -->
+    <button 
+        id="boto-sortir"
+        style="display:none;"
+        onclick="signOut()">
+        Desconnectar
+    </button>
+
+    <script>
+        function onSignIn(response) {
+            // Mostrar dades per consola
+            var id_token = response.credential; 
+            console.log("ID Token: " + id_token);
+
+            // Mostrar missatge i botó de sortida
+            document.getElementById("missatge-benvinguda").style.display = "block";
+            document.getElementById("boto-sortir").style.display = "block";
+
+            // Amagar botó de login
+            document.querySelector(".g_id_signin").style.display = "none";
+        }
+
+        function signOut() {
+            // Amagar missatge i botó de sortida
+            document.getElementById("missatge-benvinguda").style.display = "none";
+            document.getElementById("boto-sortir").style.display = "none";
+
+            // Tornar a mostrar el botó de login
+            document.querySelector(".g_id_signin").style.display = "block";
+
+            console.log("Usuari desconnectat.");
+        }
+    </script>
+
+</body>
+</html>
